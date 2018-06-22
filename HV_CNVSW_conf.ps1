@@ -34,13 +34,13 @@ Add-VMNetworkAdapter –ManagementOS –Name "Live_Migration_NET" –SwitchName 
 Set-VMNetworkAdapterVlan -ManagementOS -VMNetworkAdapterName "Live_Migration_NET" -Access -VlanId 7
 Set-VMNetworkAdapter -ManagementOS -Name "Live_Migration_NET" -VmqWeight 80 -MinimumBandwidthWeight 10
 # ISCSI NICs
-Add-VMNetworkAdapter –ManagementOS –Name "ISCSI_FaultDomain01_NIC01" –SwitchName "DVSwitch01"  
-Set-VMNetworkAdapterVlan -ManagementOS -VMNetworkAdapterName "ISCSI_FaultDomain01_NIC01" -Access -VlanId 800
-Set-VMNetworkAdapter -ManagementOS -Name "ISCSI_FaultDomain01_NIC01" -VmqWeight 100 -MinimumBandwidthWeight 40
+Add-VMNetworkAdapter –ManagementOS –Name "ISCSI_FD01_NIC01" –SwitchName "DVSwitch01"  
+Set-VMNetworkAdapterVlan -ManagementOS -VMNetworkAdapterName "ISCSI_FD01_NIC01" -Access -VlanId 800
+Set-VMNetworkAdapter -ManagementOS -Name "ISCSI_FD01_NIC01" -VmqWeight 100 -MinimumBandwidthWeight 40
 #
-Add-VMNetworkAdapter –ManagementOS –Name "ISCSI_FaultDomain01_NIC02" –SwitchName "DVSwitch01"  
-Set-VMNetworkAdapterVlan -ManagementOS -VMNetworkAdapterName "ISCSI_FaultDomain01_NIC02" -Access -VlanId 800
-Set-VMNetworkAdapter -ManagementOS -Name "ISCSI_FaultDomain01_NIC02" -VmqWeight 100 -MinimumBandwidthWeight 40
+Add-VMNetworkAdapter –ManagementOS –Name "ISCSI_FD01_NIC02" –SwitchName "DVSwitch01"  
+Set-VMNetworkAdapterVlan -ManagementOS -VMNetworkAdapterName "ISCSI_FD01_NIC02" -Access -VlanId 800
+Set-VMNetworkAdapter -ManagementOS -Name "ISCSI_FD01_NIC02" -VmqWeight 100 -MinimumBandwidthWeight 40
 #
 #
 New-NetIPAddress -InterfaceAlias "vEthernet (Management)" -IPAddress 172.17.254.50 -PrefixLength 24 -DefaultGateway 172.17.254.254 -Type Unicast
@@ -51,5 +51,5 @@ Set-DnsClientServerAddress -InterfaceAlias "vEthernet (Cluster_NET)" -ServerAddr
 #
 New-NetIPAddress -InterfaceAlias "vEthernet (Live_Migration_NET)" -IPAddress 172.17.7.50 -PrefixLength 24 -Type Unicast
 #
-New-NetIPAddress -InterfaceAlias "vEthernet (ISCSI_FaultDomain01_NIC02)" -IPAddress 10.50.37.50 -PrefixLength 24 -Type Unicast
-New-NetIPAddress -InterfaceAlias "vEthernet (ISCSI_FaultDomain01_NIC01)" -IPAddress 10.50.37.50 -PrefixLength 24 -Type Unicast
+New-NetIPAddress -InterfaceAlias "vEthernet (ISCSI_FD01_NIC02)" -IPAddress 10.50.37.50 -PrefixLength 24 -Type Unicast
+New-NetIPAddress -InterfaceAlias "vEthernet (ISCSI_FD01_NIC01)" -IPAddress 10.50.37.50 -PrefixLength 24 -Type Unicast
